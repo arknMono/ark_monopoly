@@ -1,5 +1,5 @@
 
-export const BOARD = [
+const BOARD = [
     // index 0~39
     { id: 0,  name: '罗德岛舰桥',     emoji: '🚢', type: 'go' },
     { id: 1,  name: '龙门贫民窟',     emoji: '🏚️', type: 'property', color: 'brown',  price: 600,  rent: [30,60,150,450,1350,2400],  upgradeCost: 500,  mortgage: 300,  group: '龙门(棕)' },
@@ -43,7 +43,7 @@ export const BOARD = [
     { id: 39, name: '莱塔尼亚·傀儡王座', emoji: '🎭', type: 'property', color: 'darkblue', price: 4000, rent: [750,1500,3000,9000,21000,25500], upgradeCost: 2000, mortgage: 2000, group: '莱塔尼亚(深蓝)' },
 ];
 
-export const CHANCE_CARDS = [
+const CHANCE_CARDS = [
     { text: '阿米娅发放任务奖励，收取 ¥8,000', amount: 8000 },
     { text: '歼灭作战大获全胜，收取 ¥3,000', amount: 3000 },
     { text: '源石病恶化需住院，支付 ¥500', amount: -500 },
@@ -62,7 +62,7 @@ export const CHANCE_CARDS = [
     { text: '物资补给延误，食堂欠费 ¥300', amount: -300 },
 ];
 
-export const COMMUNITY_CARDS = [
+const COMMUNITY_CARDS = [
     { text: '获得"优秀干员"奖金，收取 ¥2,000', amount: 2000 },
     { text: '源石技艺培训补贴到账，收取 ¥1,500', amount: 1500 },
     { text: '获得"罗德岛之星"奖励，收取 ¥2,000', amount: 2000 },
@@ -75,8 +75,19 @@ export const COMMUNITY_CARDS = [
     { text: '前往罗德岛舰桥，收取 ¥1,500', type: 'go_to_start', amount: 1500 },
 ];
 
-export const PLAYER_EMOJIS = ['🛡️','⚔️','🏹','🔮','🩺','🎯'];
-export const PLAYER_COLORS = ['#e74c3c','#3498db','#2ecc71','#f39c12','#9b59b6','#1abc9c'];
-export const PLAYER_NAMES  = ['阿米娅','陈','能天使','推进之王','华法琳','德克萨斯'];
+const PLAYER_EMOJIS = ['🛡️','⚔️','🏹','🔮','🩺','🎯'];
+const PLAYER_COLORS = ['#e74c3c','#3498db','#2ecc71','#f39c12','#9b59b6','#1abc9c'];
+const PLAYER_NAMES  = ['阿米娅','陈','能天使','推进之王','华法琳','德克萨斯'];
 
-export const STARTING_MONEY = 15001;
+const STARTING_MONEY = 15001;
+
+
+module.exports = {
+  BOARD,
+  CHANCE_CARDS,
+  COMMUNITY_CARDS,
+  PLAYER_EMOJIS,
+  PLAYER_COLORS,
+  PLAYER_NAMES,
+  STARTING_MONEY,
+};

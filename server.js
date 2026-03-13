@@ -13,7 +13,15 @@ const io = new Server(server, {
 });
 
 app.use(express.static(path.join(__dirname, 'public')));
-import { BOARD, CHANCE_CARDS, COMMUNITY_CARDS, PLAYER_EMOJIS, PLAYER_COLORS, PLAYER_NAMES, STARTING_MONEY } from './config/game_config.js';
+const {
+  BOARD,
+  CHANCE_CARDS,
+  COMMUNITY_CARDS,
+  PLAYER_EMOJIS,
+  PLAYER_COLORS,
+  PLAYER_NAMES,
+  STARTING_MONEY
+} = require('./config/game_config');
 // ─── 房间管理 ────────────────────────────────────────────────────────────────
 
 const rooms = {};
