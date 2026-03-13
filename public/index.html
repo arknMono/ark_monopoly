@@ -1,0 +1,115 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>明日方舟大富翁</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<!-- ══════════════ 登录界面 ══════════════ -->
+<div id="lobby">
+    <div class="lobby-card">
+        <div class="lobby-logo">⚔️</div>
+        <h1>明日方舟大富翁</h1>
+        <p class="lobby-sub">泰拉大陆 · 财富争夺战</p>
+        <input id="nicknameInput" type="text" placeholder="输入你的干员代号" maxlength="12" />
+        <div class="lobby-btns">
+            <button id="createBtn" class="btn btn-primary">创建房间</button>
+            <div class="join-row">
+                <input id="codeInput" type="text" placeholder="房间码" maxlength="6" />
+                <button id="joinBtn" class="btn btn-secondary">加入房间</button>
+            </div>
+        </div>
+        <p id="lobbyError" class="error-msg"></p>
+    </div>
+</div>
+
+<!-- ══════════════ 等待室 ══════════════ -->
+<div id="waitingRoom" class="hidden">
+    <div class="waiting-card">
+        <h2>⚔️ 明日方舟大富翁</h2>
+        <p>房间码：<strong id="roomCodeDisplay"></strong></p>
+        <div id="playerList" class="player-list"></div>
+        <p class="hint">将房间码发给好友，2~6人即可开始</p>
+        <button id="startBtn" class="btn btn-primary hidden">开始游戏</button>
+        <p id="waitError" class="error-msg"></p>
+    </div>
+</div>
+
+<!-- ══════════════ 游戏主界面 ══════════════ -->
+<div id="gameArea" class="hidden">
+    <div id="gameLayout">
+
+        <!-- 左：棋盘 -->
+        <div id="boardWrap">
+            <div id="board"></div>
+        </div>
+
+        <!-- 右：控制面板 -->
+        <div id="panel">
+
+            <!-- 玩家状态 -->
+            <div id="playerStatus"></div>
+
+            <!-- 骰子区 -->
+            <div id="diceArea">
+                <div id="diceDisplay">
+                    <span id="dice1">🎲</span>
+                    <span id="dice2">🎲</span>
+                </div>
+                <button id="rollBtn" class="btn btn-primary">掷骰子</button>
+                <button id="jailRollBtn" class="btn btn-warning hidden">隔离中·掷骰</button>
+                <button id="jailPayBtn" class="btn btn-danger hidden">支付¥500解除隔离</button>
+            </div>
+
+            <!-- 购买/跳过 -->
+            <div id="buyArea" class="hidden">
+                <p id="buyPrompt"></p>
+                <button id="buyBtn" class="btn btn-primary">购买</button>
+                <button id="skipBtn" class="btn btn-secondary">放弃</button>
+            </div>
+
+            <!-- 负债处理 -->
+            <div id="debtArea" class="hidden">
+                <p id="debtPrompt" style="color:#ff5252;font-weight:bold"></p>
+                <p style="font-size:0.75rem;color:#aaa">请在下方【我的地产】中点击"抵押"来偿还负债，余额≥0后点击确认。</p>
+                <button id="debtResolveBtn" class="btn btn-warning" style="margin-top:8px">确认偿还 / 宣告破产</button>
+            </div>
+
+            <!-- 我的地产 -->
+            <div id="myProperties">
+                <h4>📋 我的地产</h4>
+                <div id="propList"></div>
+            </div>
+
+            <!-- 游戏记录 -->
+            <div id="logArea">
+                <h4>📡 作战记录</h4>
+                <div id="logList"></div>
+            </div>
+
+            <!-- 聊天 -->
+            <div id="chatArea">
+                <input id="chatInput" type="text" placeholder="发送消息..." maxlength="40" />
+                <button id="chatBtn" class="btn btn-secondary">发送</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- ══════════════ 卡牌弹窗 ══════════════ -->
+<div id="cardModal" class="modal hidden">
+    <div class="modal-content">
+        <div id="cardIcon"></div>
+        <p id="cardText"></p>
+        <button id="cardClose" class="btn btn-primary">确认</button>
+    </div>
+</div>
+
+<script src="/socket.io/socket.io.js"></script>
+<script src="game.js"></script>
+</body>
+</html>
