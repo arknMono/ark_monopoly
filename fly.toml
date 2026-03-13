@@ -2,7 +2,7 @@ app = "monopoly-wispy-firefly-6109"
 build = { }
 primary_region = "sin"
 [mounts]
-source = "data"
+source = "vol1"
 destination = "/config"
 [http_service]
 auto_start_machines = true
