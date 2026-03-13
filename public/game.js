@@ -189,50 +189,6 @@ function showWinModal(winner) {
 
 // ── 棋盘渲染 ──────────────────────────────────────────────────────────────────
 
-// 从 server 同步的 BOARD 数据（客户端内嵌）
-const BOARD = [
-    { id:0,  name:'罗德岛舰桥',       emoji:'🚢', type:'go' },
-    { id:1,  name:'龙门贫民窟',       emoji:'🏚️', type:'property', color:'brown',    price:600,  group:'龙门(棕)' },
-    { id:2,  name:'龙门仲裁庭裁决',   emoji:'⚖️', type:'community' },
-    { id:3,  name:'龙门商业街',       emoji:'🏪', type:'property', color:'brown',    price:600,  group:'龙门(棕)' },
-    { id:4,  name:'源石病治疗费',     emoji:'💊', type:'tax' },
-    { id:5,  name:'停靠港·东',       emoji:'⚓', type:'port',     price:2000 },
-    { id:6,  name:'炎国·城墙',       emoji:'🏯', type:'property', color:'sky',      price:1000, group:'炎国(天蓝)' },
-    { id:7,  name:'罗德岛作战命令',   emoji:'📜', type:'chance' },
-    { id:8,  name:'炎国·明面大街',   emoji:'🏮', type:'property', color:'sky',      price:1000, group:'炎国(天蓝)' },
-    { id:9,  name:'炎国·炎都皇宫',   emoji:'🔥', type:'property', color:'sky',      price:1200, group:'炎国(天蓝)' },
-    { id:10, name:'感染者隔离区',     emoji:'⛔', type:'jail' },
-    { id:11, name:'维多利亚·伦蒂尼姆', emoji:'🎩', type:'property', color:'pink',   price:1400, group:'维多利亚(粉)' },
-    { id:12, name:'源石矿脉',         emoji:'💎', type:'utility',  price:1500 },
-    { id:13, name:'维多利亚·威斯特洛斯', emoji:'🏰', type:'property', color:'pink', price:1400, group:'维多利亚(粉)' },
-    { id:14, name:'维多利亚·大不列颠', emoji:'👑', type:'property', color:'pink',   price:1600, group:'维多利亚(粉)' },
-    { id:15, name:'停靠港·南',       emoji:'⚓', type:'port',     price:2000 },
-    { id:16, name:'拉特兰·教廷广场', emoji:'✝️', type:'property', color:'orange',   price:1800, group:'拉特兰(橙)' },
-    { id:17, name:'龙门仲裁庭裁决',   emoji:'⚖️', type:'community' },
-    { id:18, name:'拉特兰·圣约之城', emoji:'🕍', type:'property', color:'orange',   price:1800, group:'拉特兰(橙)' },
-    { id:19, name:'拉特兰·神迹殿堂', emoji:'⛪', type:'property', color:'orange',   price:2000, group:'拉特兰(橙)' },
-    { id:20, name:'蒙德城广场',       emoji:'🌸', type:'safe' },
-    { id:21, name:'乌萨斯·帝国议会', emoji:'🐻', type:'property', color:'red',      price:2200, group:'乌萨斯(红)' },
-    { id:22, name:'罗德岛作战命令',   emoji:'📜', type:'chance' },
-    { id:23, name:'乌萨斯·雪原要塞', emoji:'❄️', type:'property', color:'red',      price:2200, group:'乌萨斯(红)' },
-    { id:24, name:'乌萨斯·冬境皇都', emoji:'🏔️', type:'property', color:'red',      price:2400, group:'乌萨斯(红)' },
-    { id:25, name:'停靠港·西',       emoji:'⚓', type:'port',     price:2000 },
-    { id:26, name:'卡西米尔·竞技场', emoji:'⚔️', type:'property', color:'yellow',   price:2600, group:'卡西米尔(黄)' },
-    { id:27, name:'卡西米尔·贵族庄园', emoji:'🏇', type:'property', color:'yellow', price:2600, group:'卡西米尔(黄)' },
-    { id:28, name:'整合运动通讯网',   emoji:'📡', type:'utility',  price:1500 },
-    { id:29, name:'卡西米尔·王都华沙', emoji:'🌟', type:'property', color:'yellow', price:2800, group:'卡西米尔(黄)' },
-    { id:30, name:'被强制隔离',       emoji:'☣️', type:'go_to_jail' },
-    { id:31, name:'萨尔贡·沙漠遗迹', emoji:'🏜️', type:'property', color:'green',    price:3000, group:'萨尔贡(绿)' },
-    { id:32, name:'萨尔贡·古城废墟', emoji:'🗿', type:'property', color:'green',    price:3000, group:'萨尔贡(绿)' },
-    { id:33, name:'龙门仲裁庭裁决',   emoji:'⚖️', type:'community' },
-    { id:34, name:'萨尔贡·永恒圣所', emoji:'⛩️', type:'property', color:'green',    price:3200, group:'萨尔贡(绿)' },
-    { id:35, name:'停靠港·北',       emoji:'⚓', type:'port',     price:2000 },
-    { id:36, name:'罗德岛作战命令',   emoji:'📜', type:'chance' },
-    { id:37, name:'莱塔尼亚·音律联合会', emoji:'🎵', type:'property', color:'darkblue', price:3500, group:'莱塔尼亚(深蓝)' },
-    { id:38, name:'武器维护费',       emoji:'🔧', type:'tax' },
-    { id:39, name:'莱塔尼亚·傀儡王座', emoji:'🎭', type:'property', color:'darkblue', price:4000, group:'莱塔尼亚(深蓝)' },
-];
-
 function renderBoard(state) {
     const boardEl = $('board');
     boardEl.innerHTML = '';
@@ -241,7 +197,7 @@ function renderBoard(state) {
     const cells = Array.from({ length: 11 }, () => Array(11).fill(null));
 
     // 填充外圈格子
-    BOARD.forEach((tile, idx) => {
+    state.board.forEach((tile, idx) => {
         const { row, col } = getTileGridPos(idx);
         const prop = state.properties[tile.id];
         const owner = prop ? state.players.find(p => p.id === prop.owner) : null;
@@ -341,12 +297,12 @@ function renderPlayerStatus(state) {
             (i === state.currentPlayerIndex && !p.bankrupt ? ' active-turn' : '') +
             (p.bankrupt ? ' bankrupt' : '');
         card.style.borderLeftColor = p.color;
-        const tile = BOARD[p.position];
+        const tile = state.board[p.position];
         const jailInfo = p.jailTurns > 0 ? ` 🔒×${p.jailTurns}` : '';
         card.innerHTML = `
           <div class="ps-name">${p.emoji} ${p.name} ${p.bankrupt ? '💀 已退出' : ''}</div>
           <div class="ps-money">¥${p.money.toLocaleString()}</div>
-          <div class="ps-pos">${p.bankrupt ? '——' : (BOARD[p.position]?.name ?? '')}</div>
+          <div class="ps-pos">${p.bankrupt ? '——' : (state.board[p.position]?.name ?? '')}</div>
         `;
 
         el.appendChild(card);
@@ -416,7 +372,7 @@ function renderBuyArea(state) {
     }
 
     if (isMyTurn && pending?.type === 'buy') {
-        const tile = BOARD[pending.tileId];
+        const tile = state.board[pending.tileId];
         $('buyPrompt').textContent =
             `${tile.emoji} ${tile.name}  售价 ¥${tile.price}  (余额 ¥${me.money.toLocaleString()})`;
         $('buyArea').classList.remove('hidden');
@@ -458,7 +414,7 @@ function renderMyProperties(state) {
 
     const myProps = Object.entries(state.properties)
         .filter(([id, p]) => p.owner === myId)
-        .map(([id, p]) => ({ tile: BOARD[id], prop: p, id: parseInt(id) }));
+        .map(([id, p]) => ({ tile: state.board[id], prop: p, id: parseInt(id) }));
 
     if (myProps.length === 0) {
         list.innerHTML = '<div style="font-size:0.72rem;color:#556">暂无地产</div>';
