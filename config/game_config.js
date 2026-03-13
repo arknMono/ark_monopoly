@@ -79,7 +79,7 @@ const PLAYER_EMOJIS = ['🛡️','⚔️','🏹','🔮','🩺','🎯'];
 const PLAYER_COLORS = ['#e74c3c','#3498db','#2ecc71','#f39c12','#9b59b6','#1abc9c'];
 const PLAYER_NAMES  = ['阿米娅','陈','能天使','推进之王','华法琳','德克萨斯'];
 
-const STARTING_MONEY = 15001;
+const STARTING_MONEY = 15000;
 
 
 module.exports = {
