@@ -74,3 +74,9 @@ const COMMUNITY_CARDS = [
     { text: '企业赞助罗德岛医疗计划，收取 ¥2,500', amount: 2500 },
     { text: '前往罗德岛舰桥，收取 ¥1,500', type: 'go_to_start', amount: 1500 },
 ];
+
+const PLAYER_EMOJIS = ['🛡️','⚔️','🏹','🔮','🩺','🎯'];
+const PLAYER_COLORS = ['#e74c3c','#3498db','#2ecc71','#f39c12','#9b59b6','#1abc9c'];
+const PLAYER_NAMES  = ['阿米娅','陈','能天使','推进之王','华法琳','德克萨斯'];
+
+const STARTING_MONEY = 15001;
